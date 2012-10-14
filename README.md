@@ -1,4 +1,5 @@
-superDduper
+superDduper - Written by Vanomaly.com - Jason Sipula
+
 /****************************************************************/
 
 Copyright 2012 Vanomaly.com and Jason Sipula
