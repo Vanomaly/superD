@@ -15,6 +15,7 @@ public class DirectoryScanner {
 					String hash = hasher.getSHA256(files[q].toString());
 					String filepath = files[q].toString();
 					System.out.println(filepath + " | " + hash);
+					sql.sqlDB(filepath, hash);
 				}
 			} catch (IOException e1) {
 				continue;

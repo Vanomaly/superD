@@ -7,7 +7,7 @@ import com.vanomaly.jutils.SQLiteUtils;
 public class DeDupeSQL extends SQLiteUtils {
 //	public void sqlDB(DeDupeObj[] deDupeObj) {
 	public void sqlDB(String file, String hash) {
-		System.out.println("DeDupeSQL CLASS");
+//		System.out.println("DeDupeSQL CLASS");
 		SQLiteStatement st;
 		try {
 			//st = db.prepare("INSERT INTO files VALUES (? , ?);");
