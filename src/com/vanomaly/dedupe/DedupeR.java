@@ -13,10 +13,11 @@
  *  See the License for the specific language governing permissions and        *
  *  limitations under the License.                                             *
  *******************************************************************************/
- // test
+
 package com.vanomaly.dedupe;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import com.vanomaly.jutils.*;
@@ -42,8 +43,9 @@ public class DedupeR {
 	public static void walk(File[] files, DeDupeObj[] deDupeObj, DeDupeSQL sql) {
 		for (int i = 0; i < files.length; i++) {
 			try {
-//				if (files[i].getAbsolutePath().equalsIgnoreCase(files[i].getCanonicalPath())) {
-					//walk(DirectoryScanner.getList(files[i].toString()), deDupeObj, sql);
+				if (files[i].getAbsolutePath().equalsIgnoreCase(files[i].getCanonicalPath())) {
+					walk(DirectoryScanner.getList(files[i].toString(), sql), deDupeObj, sql);
+			}
 				//	walk(ScanFiles.scanFiles(files[i].toString(), deDupeObj), 
 					// 		deDupeObj, sql);
 //					DedupeR.count++;
@@ -57,7 +59,7 @@ public class DedupeR {
 //						DedupeR.count = 0;
 //					}
 //				}
-			} catch (NullPointerException e) {
+			} catch (NullPointerException | IOException e) {
 		//		continue;
 //				e.printStackTrace();
 //				try {

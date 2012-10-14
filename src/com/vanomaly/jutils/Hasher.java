@@ -7,7 +7,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 public class Hasher {
-	public String getSHA256(String file) {
+	public String getSHA256(String file) throws IOException {
 		StringBuffer hexString = null;
 		try {
 			MessageDigest md = MessageDigest.getInstance("SHA-256");
@@ -28,11 +28,12 @@ public class Hasher {
 			}
 		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
 		}
+//		} catch (FileNotFoundException e) {
+//			e.printStackTrace();
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
 		return hexString.toString();
 	}
 }
