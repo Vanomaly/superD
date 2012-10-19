@@ -7,7 +7,7 @@ import com.almworks.sqlite4java.SQLiteException;
 import com.almworks.sqlite4java.SQLiteStatement;
 
 public class SQLiteUtils {
-	protected static SQLiteConnection db = null;
+	public static SQLiteConnection db = null;
 	public static void main (String[] args) {
 		String dbString = "db/superDduperdb.sqlite3";
 		db = new SQLiteConnection(new File(dbString));

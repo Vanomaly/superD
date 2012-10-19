@@ -3,16 +3,17 @@ package com.vanomaly.dedupe;
 import java.io.File;
 import java.io.IOException;
 
+import com.almworks.sqlite4java.SQLiteStatement;
 import com.vanomaly.jutils.DirectoryScanner;
 import com.vanomaly.jutils.Hasher;
 
 public class ScanFiles extends DirectoryScanner {
-	public static File[] scanFiles(String dir, DeDupeObj[] deDupeObj) throws IOException {
+	public static File[] scanFiles(String dir, DeDupeObj[] deDupeObj, SQLiteStatement st) throws IOException {
 		//DedupeR.count++;
 		System.out.println("SCANFILES CLASS");
 		DeDupeSQL sql = new DeDupeSQL();
 		Hasher getHash = new Hasher();
-		File[] files = DirectoryScanner.getList(dir, sql);
+		File[] files = DirectoryScanner.getList(dir, st);
 		System.out.println(files.length);
 		for (int i = 0; i < files.length; i++) {
 			DedupeR.count++;
@@ -34,7 +35,7 @@ public class ScanFiles extends DirectoryScanner {
 					deDupeObj = new DeDupeObj[DedupeR.batchSize];
 					
 				}  */
-				sql.sqlDB(file, hash);
+				sql.sqlDB(st, file, hash);
 				DedupeR.count++;
 				System.out.println("Processing: \n\tFile: " + deDupeObj[DedupeR.count].filepath
 						+ "\n\tHash: " + deDupeObj[DedupeR.count].filehash);

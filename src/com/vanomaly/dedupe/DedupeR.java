@@ -20,6 +20,8 @@ import java.io.File;
 //import java.io.FileNotFoundException;
 import java.io.IOException;
 
+import com.almworks.sqlite4java.SQLiteException;
+import com.almworks.sqlite4java.SQLiteStatement;
 import com.vanomaly.jutils.*;
 
 public class DedupeR {
@@ -30,24 +32,33 @@ public class DedupeR {
 		timer.startTimer();
 		DeDupeSQL sql = new DeDupeSQL();
 		sql.connectDB();
-		setup(sql);
+		
+		setup();//, st);
+		//st.dispose();
 		sql.closeDB();
 		timer.stopTimer();
 		System.out.println("Total Runtime: " + timer.getTime());
 	}
-	public static void setup(DeDupeSQL sql) {
+	public static void setup() { //, SQLiteStatement st) {
 		//File[] rootDirs = DetectMachineInfo.getRoot();
 		File[] rootDirs = new File[1];
 		rootDirs[0] = new File("/home/jason");
 		DeDupeObj[] deDupeObj = new DeDupeObj[DedupeR.batchSize];
-		walk(rootDirs, deDupeObj, sql);
+		String ps1 = "INSERT INTO files VALUES (? , ?);";
+		SQLiteStatement st = null;
+		try {
+			st = com.vanomaly.jutils.SQLiteUtils.db.prepare(ps1);
+		} catch (SQLiteException e) {
+			e.printStackTrace();
+		}
+		walk(rootDirs, deDupeObj, st);
 	}
-	public static void walk(File[] files, DeDupeObj[] deDupeObj, DeDupeSQL sql) {
+	public static void walk(File[] files, DeDupeObj[] deDupeObj, SQLiteStatement st) {
 		for (int i = 0; i < files.length; i++) {
 			try {
 				if (files[i].getAbsolutePath().equalsIgnoreCase(files[i].getCanonicalPath())) {
 					if (!(files[i].toString().contains("/."))) {
-						walk(DirectoryScanner.getList(files[i].toString(), sql), deDupeObj, sql);
+						walk(DirectoryScanner.getList(files[i].toString(), st), deDupeObj, st);
 					}
 			}
 				//	walk(ScanFiles.scanFiles(files[i].toString(), deDupeObj), 
