@@ -1,17 +1,18 @@
 package com.vanomaly.dedupe;
 
 import java.io.File;
+import java.io.IOException;
 
 import com.vanomaly.jutils.DirectoryScanner;
 import com.vanomaly.jutils.Hasher;
 
 public class ScanFiles extends DirectoryScanner {
-	public static File[] scanFiles(String dir, DeDupeObj[] deDupeObj) {
+	public static File[] scanFiles(String dir, DeDupeObj[] deDupeObj) throws IOException {
 		//DedupeR.count++;
 		System.out.println("SCANFILES CLASS");
 		DeDupeSQL sql = new DeDupeSQL();
 		Hasher getHash = new Hasher();
-		File[] files = DirectoryScanner.getList(dir);
+		File[] files = DirectoryScanner.getList(dir, sql);
 		System.out.println(files.length);
 		for (int i = 0; i < files.length; i++) {
 			DedupeR.count++;

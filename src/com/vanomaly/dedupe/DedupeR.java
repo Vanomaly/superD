@@ -17,7 +17,7 @@
 package com.vanomaly.dedupe;
 
 import java.io.File;
-import java.io.FileNotFoundException;
+//import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import com.vanomaly.jutils.*;
@@ -36,7 +36,9 @@ public class DedupeR {
 		System.out.println("Total Runtime: " + timer.getTime());
 	}
 	public static void setup(DeDupeSQL sql) {
-		File[] rootDirs = DetectMachineInfo.getRoot();
+		//File[] rootDirs = DetectMachineInfo.getRoot();
+		File[] rootDirs = new File[1];
+		rootDirs[0] = new File("/home/jason");
 		DeDupeObj[] deDupeObj = new DeDupeObj[DedupeR.batchSize];
 		walk(rootDirs, deDupeObj, sql);
 	}
@@ -44,7 +46,9 @@ public class DedupeR {
 		for (int i = 0; i < files.length; i++) {
 			try {
 				if (files[i].getAbsolutePath().equalsIgnoreCase(files[i].getCanonicalPath())) {
-					walk(DirectoryScanner.getList(files[i].toString(), sql), deDupeObj, sql);
+					if (!(files[i].toString().contains("/."))) {
+						walk(DirectoryScanner.getList(files[i].toString(), sql), deDupeObj, sql);
+					}
 			}
 				//	walk(ScanFiles.scanFiles(files[i].toString(), deDupeObj), 
 					// 		deDupeObj, sql);
