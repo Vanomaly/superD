@@ -32,14 +32,13 @@ public class DedupeR {
 		timer.startTimer();
 		DeDupeSQL sql = new DeDupeSQL();
 		sql.connectDB();
-		
-		setup();//, st);
+		setup();
 		//st.dispose();
 		sql.closeDB();
 		timer.stopTimer();
 		System.out.println("Total Runtime: " + timer.getTime());
 	}
-	public static void setup() { //, SQLiteStatement st) {
+	public static void setup() {
 		//File[] rootDirs = DetectMachineInfo.getRoot();
 		File[] rootDirs = new File[1];
 		rootDirs[0] = new File("/home/jason");
@@ -60,32 +59,10 @@ public class DedupeR {
 					if (!(files[i].toString().contains("/."))) {
 						walk(DirectoryScanner.getList(files[i].toString(), st), deDupeObj, st);
 					}
-			}
-				//	walk(ScanFiles.scanFiles(files[i].toString(), deDupeObj), 
-					// 		deDupeObj, sql);
-//					DedupeR.count++;
-//					System.out.println("Count: " + DedupeR.count);
-//					if (DedupeR.count == (batchSize -1)) {
-//						System.out.println("");
-//						System.out.println("\t~~~~ Syncing Database ~~~~");
-//						System.out.println("\t  ~~~~ Please Wait ~~~~");
-//						System.out.println("");
-//						sql.sqlDB(deDupeObj);
-//						DedupeR.count = 0;
-//					}
-//				}
+				}
 			} catch (NullPointerException | IOException e) {
-		//		continue;
-//				e.printStackTrace();
-//				try {
-//					Thread.sleep(2000);
-//				} catch (InterruptedException en) {
-//					en.printStackTrace();
-//				}
 				continue;
-			} //catch (IOException e) {
-//				continue;
-//			}
+			}
 		}
 	}
 }

@@ -46,10 +46,6 @@ public class DirectoryScanner {
 				e.printStackTrace();
 			}
 		}
-//		for (int i = 0; i < files.length; i++) {
-			//System.out.println(files[i]);
-//		}
 		return files;
-		//return new File(dir).listFiles();
 	}
 }
