@@ -32,12 +32,17 @@ public class DedupeR {
 		timer.startTimer();
 		DeDupeSQL sql = new DeDupeSQL();
 		CheckDupes check = new CheckDupes();
+		String hashVer = "SHA-";
+		if (DetectCPU.getCPUArch().contains("64")) {
+			hashVer += "512";
+		} else {
+			hashVer += "256";
+		}
 		sql.connectDB();
 		setup();
 		check.checkDupes();
 		sql.connectDB();
 		setup();
-		//st.dispose();
 		sql.closeDB();
 		timer.stopTimer();
 		System.out.println("Total Runtime: " + timer.getTime());
