@@ -31,8 +31,15 @@ public class DedupeR {
 		MilliTimer timer = new MilliTimer();
 		timer.startTimer();
 		DeDupeSQL sql = new DeDupeSQL();
+<<<<<<< HEAD
+		CheckDupes check = new CheckDupes();
 		sql.connectDB();
 		setup();
+		check.checkDupes();
+=======
+		sql.connectDB();
+		setup();
+>>>>>>> 7431177a894b72d308271d322d6317d68d57a453
 		//st.dispose();
 		sql.closeDB();
 		timer.stopTimer();
