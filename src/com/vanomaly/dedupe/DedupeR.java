@@ -38,6 +38,7 @@ public class DedupeR {
 		} else {
 			hashVer += "256";
 		}
+		sql.createDB("superDduper.sqlite3");
 		sql.connectDB();
 		setup();
 		check.checkDupes();
@@ -50,7 +51,7 @@ public class DedupeR {
 	public static void setup() {
 		//File[] rootDirs = DetectMachineInfo.getRoot();
 		File[] rootDirs = new File[1];
-		rootDirs[0] = new File("/home/jason");
+		rootDirs[0] = new File("W:\\");
 		DeDupeObj[] deDupeObj = new DeDupeObj[DedupeR.batchSize];
 		String ps1 = "INSERT INTO files VALUES (? , ?);";
 		SQLiteStatement st = null;

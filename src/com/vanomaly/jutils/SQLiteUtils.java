@@ -78,4 +78,11 @@ public class SQLiteUtils {
 	public void closeDB() {
 		    db.dispose();
 	}
+	public boolean createDB(String dbName) {
+//		File cmd = new File("db/" + dbName);
+//		NativeCmd console = new NativeCmd();
+//		console.execCmd(cmd.getAbsolutePath());
+		
+		return true;
+	}
 }
