@@ -1,0 +1,10 @@
+bin
+db
+src/testing
+.classpath
+.project
+.settings
+.gitignore
+.git
+*.swp
+

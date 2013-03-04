@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-superDduper
-===========
-
-Super Deduplication Utility. Used File Hashing to Determine Duplicate Files and Allows User to Remove.
-=======
 superDduper - Written by Vanomaly.com - Jason Sipula
 
 /****************************************************************/
@@ -30,4 +24,3 @@ superDduper is a file-based Deduplication Utility
 - Stores file path and hashes into SQLite3 database and uses this as a reference
 	for deduplication. 
 - Confirms action with user prior to removing duplicate files.
->>>>>>> 51f3c27d34cd4f886886f3ebb0875f74d6d780f1

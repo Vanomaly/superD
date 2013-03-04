@@ -1,0 +1,37 @@
+USE dedupe;
+
+DROP TABLE IF EXISTS duplicates;
+DROP TABLE IF EXISTS files;
+
+GRANT CREATE, DROP, LOCK TABLES, DELETE, INSERT, SELECT, 
+	UPDATE, CREATE VIEW, SHOW VIEW, CREATE TEMPORARY TABLES 
+	ON dedupe.* TO 'deduper'@'localhost' 
+	IDENTIFIED BY 'd3dup3';
+
+REVOKE ALL PRIVILEGES ON dedupe.* FROM 'deduper'@'localhost';
+
+FLUSH PRIVILEGES;
+
+GRANT CREATE, DROP, LOCK TABLES, DELETE, INSERT, SELECT, 
+	UPDATE, CREATE VIEW, SHOW VIEW, CREATE TEMPORARY TABLES 
+	ON dedupe.* TO 'deduper'@'localhost' 
+	IDENTIFIED BY 'd3dup3';
+	
+FLUSH PRIVILEGES;
+
+CREATE TABLE files
+(
+ record_id INTEGER PRIMARY KEY AUTO_INCREMENT,
+ file_path VARCHAR(767) UNIQUE,
+ file_hash char(64)
+);
+
+CREATE TABLE duplicates
+(
+ dupe1_id INTEGER,
+ dupe2_id INTEGER,
+ FOREIGN KEY (dupe1_id) REFERENCES files(record_id),
+ FOREIGN KEY (dupe2_id) REFERENCES files(record_id)
+);
+
+COMMIT;
